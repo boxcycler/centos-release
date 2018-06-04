@@ -1,0 +1,48 @@
+{
+  "_comment": "Build with `packer build r75.json`",
+  "builders": [
+      {
+          "vm_name": "centos75",
+          "type": "virtualbox-iso",
+          "iso_checksum": "21c5d14fb2e38862136f29a16f2caf58e52bf498882479070e425ecf6995ef53dd89fba2b42d2f1e3bac02c2558ecc69724f5c68ff4848954cab02c4f896360b",
+          "iso_checksum_type": "sha512",
+          "iso_url": "/u1/iso/linux/centos/CentOS-7-x86_64-DVD-1804.iso",
+          "guest_os_type": "RedHat_64",
+          "hard_drive_interface": "sata",
+          "disk_size": "128000",
+          "floppy_files": [
+            "ks75.cfg"
+          ],
+          "headless": true,
+          "guest_additions_mode": "attach",
+          "boot_command": "<up><wait><tab> text ks=hd:fd0:/ks75.cfg <enter>",
+          "communicator": "none",
+          "shutdown_command": "shutdown -P now",
+          "shutdown_timeout": "30m",
+          "post_shutdown_delay": "10s",
+          "virtualbox_version_file": "",
+          "vboxmanage": [
+            [ "modifyvm", "{{.Name}}", "--nic1", "hostonly" ],
+            [ "modifyvm", "{{.Name}}", "--hostonlyadapter1", "vboxnet0" ],
+            [ "modifyvm", "{{.Name}}", "--cableconnected1", "on" ],
+            [ "modifyvm", "{{.Name}}", "--memory", "1024" ],
+            [ "modifyvm", "{{.Name}}", "--vram", "9" ],
+            [ "modifyvm", "{{.Name}}", "--cpus", "1" ],
+            [ "modifyvm", "{{.Name}}", "--audio", "none" ],
+            [ "modifyvm", "{{.Name}}", "--audioout", "off" ],
+            [ "modifyvm", "{{.Name}}", "--audiocontroller", "hda" ]
+          ],
+          "vboxmanage_post": [
+            [ "modifyvm", "{{.Name}}", "--nic1", "nat" ],
+            [ "storageattach", "{{.Name}}", "--storagectl", "IDE Controller", "--port", "0", "--device", "0", "--type", "dvddrive", "--medium", "emptydrive" ]
+          ]
+      }
+  ],
+  "post-processors": [
+    {
+      "keep_input_artifact": false,
+      "output": "box/centos75-release.box",
+      "type": "vagrant"
+    }
+  ]
+}

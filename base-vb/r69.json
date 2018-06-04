@@ -1,0 +1,48 @@
+{
+  "_comment": "Build with `packer build r69.json`",
+  "builders": [
+      {
+          "vm_name": "centos69",
+          "type": "virtualbox-iso",
+          "iso_checksum": "8349df8df22e0161bdf5da00af508b3e7a5224f9ed1f56bff9bad9352ef08a66133fb8168246b862e4568d26f48f073c793df18bc53265f61991ad8ca05e7f28",
+          "iso_checksum_type": "sha512",
+          "iso_url": "/u1/iso/linux/centos/CentOS-6.9-x86_64-bin-DVD1.iso",
+          "guest_os_type": "RedHat_64",
+          "hard_drive_interface": "sata",
+          "disk_size": "128000",
+          "floppy_files": [
+            "ks69.cfg"
+          ],
+          "headless": true,
+          "guest_additions_mode": "attach",
+          "boot_command": "<up><wait><tab> text ks=hd:fd0:/ks69.cfg <enter>",
+          "communicator": "none",
+          "shutdown_command": "shutdown -P now",
+          "shutdown_timeout": "30m",
+          "post_shutdown_delay": "10s",
+          "virtualbox_version_file": "",
+          "vboxmanage": [
+            [ "modifyvm", "{{.Name}}", "--nic1", "hostonly" ],
+            [ "modifyvm", "{{.Name}}", "--hostonlyadapter1", "vboxnet0" ],
+            [ "modifyvm", "{{.Name}}", "--cableconnected1", "on" ],
+            [ "modifyvm", "{{.Name}}", "--memory", "1024" ],
+            [ "modifyvm", "{{.Name}}", "--vram", "9" ],
+            [ "modifyvm", "{{.Name}}", "--cpus", "1" ],
+            [ "modifyvm", "{{.Name}}", "--audio", "none" ],
+            [ "modifyvm", "{{.Name}}", "--audioout", "off" ],
+            [ "modifyvm", "{{.Name}}", "--audiocontroller", "hda" ]
+          ],
+          "vboxmanage_post": [
+            [ "modifyvm", "{{.Name}}", "--nic1", "nat" ],
+            [ "storageattach", "{{.Name}}", "--storagectl", "IDE Controller", "--port", "0", "--device", "0", "--type", "dvddrive", "--medium", "emptydrive" ]
+          ]
+      }
+  ],
+  "post-processors": [
+    {
+      "keep_input_artifact": false,
+      "output": "box/centos69-release.box",
+      "type": "vagrant"
+    }
+  ]
+}

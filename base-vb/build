@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#-------------------------------------------------------------------------------
+# project name:  Boxcycler Builds
+# file name:     build
+# author:        Steve Vasta
+# created:       May 31, 2018
+# modified:      June 4, 2018
+# description:   A simple file to kick off a packer build using
+#                Oracle VirtualBox as a hypervisor . . .
+
+set -o errexit -o nounset -o pipefail
+
+if [ "${DEBUG:=false}" = "true" ]; then
+  set -o xtrace
+fi
+
+packer build -only="virtualbox-iso" $1
