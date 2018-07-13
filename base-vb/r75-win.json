@@ -6,7 +6,7 @@
           "type": "virtualbox-iso",
           "iso_checksum": "21c5d14fb2e38862136f29a16f2caf58e52bf498882479070e425ecf6995ef53dd89fba2b42d2f1e3bac02c2558ecc69724f5c68ff4848954cab02c4f896360b",
           "iso_checksum_type": "sha512",
-          "iso_url": "$HOME/shares/iso/linux/centos/CentOS-7-x86_64-DVD-1804.iso",
+          "iso_url": "H:\\shares\\iso\\linux\\centos\\CentOS-7-x86_64-DVD-1804.iso",
           "guest_os_type": "RedHat_64",
           "hard_drive_interface": "sata",
           "disk_size": "128000",
@@ -23,7 +23,7 @@
           "virtualbox_version_file": "",
           "vboxmanage": [
             [ "modifyvm", "{{.Name}}", "--nic1", "hostonly" ],
-            [ "modifyvm", "{{.Name}}", "--hostonlyadapter1", "vboxnet0" ],
+            [ "modifyvm", "{{.Name}}", "--hostonlyadapter1", "VirtualBox Host-Only Ethernet Adapter" ],
             [ "modifyvm", "{{.Name}}", "--cableconnected1", "on" ],
             [ "modifyvm", "{{.Name}}", "--memory", "1024" ],
             [ "modifyvm", "{{.Name}}", "--vram", "9" ],

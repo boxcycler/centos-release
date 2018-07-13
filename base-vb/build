@@ -14,4 +14,9 @@ if [ "${DEBUG:=false}" = "true" ]; then
   set -o xtrace
 fi
 
-packer build -only="virtualbox-iso" $1
+if [ -z "$MICROSOFTLINUX" ]; then
+  packer build -only="virtualbox-iso" $1
+else
+  MODARG=${1/.json/-win.json}
+  powershell.exe "packer build -only=\"virtualbox-iso\" $MODARG"
+fi
