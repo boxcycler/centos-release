@@ -6,7 +6,7 @@
           "type": "virtualbox-iso",
           "iso_checksum": "9d94dd802f3e65f77f23ef277607707d9ffa2dbdc1188ac3bb8af6f5e84fad78b5352913d574ed386f772f824d2b057fce427ef64090339c643846922424b8eb",
           "iso_checksum_type": "sha512",
-          "iso_url": "/u1/iso/linux/centos/CentOS-6.9-i386-bin-DVD1.iso",
+          "iso_url": "/mnt/iso/linux/centos/CentOS-6.9-i386-bin-DVD1.iso",
           "guest_os_type": "RedHat",
           "hard_drive_interface": "sata",
           "disk_size": "128000",
