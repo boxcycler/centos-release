@@ -1,21 +1,21 @@
 {
-  "_comment": "Build with `packer build r69.json`",
+  "_comment": "Build with `packer build r610.json`",
   "builders": [
       {
-          "vm_name": "centos69-dt-i386",
+          "vm_name": "centos610",
           "type": "virtualbox-iso",
-          "iso_checksum": "9d94dd802f3e65f77f23ef277607707d9ffa2dbdc1188ac3bb8af6f5e84fad78b5352913d574ed386f772f824d2b057fce427ef64090339c643846922424b8eb",
+          "iso_checksum": "71ed7783196586857ebc831c876136d7f0bf633b15733f1a7ee466751ec12321c2d915b934f575f37a5f19b29edd996f095911f2d5c77f92c535b3b69b9b50d0",
           "iso_checksum_type": "sha512",
-          "iso_url": "/mnt/iso/linux/centos/CentOS-6.9-i386-bin-DVD1.iso",
-          "guest_os_type": "RedHat",
+          "iso_url": "/mnt/iso/linux/centos/CentOS-6.10-x86_64-bin-DVD1.iso",
+          "guest_os_type": "RedHat_64",
           "hard_drive_interface": "sata",
           "disk_size": "128000",
           "floppy_files": [
-            "ks69-dt.cfg"
+            "ks610.cfg"
           ],
           "headless": true,
           "guest_additions_mode": "attach",
-          "boot_command": "<up><wait><tab> text ks=hd:fd0:/ks69-dt.cfg <enter>",
+          "boot_command": "<up><wait><tab> text ks=hd:fd0:/ks610.cfg <enter>",
           "communicator": "none",
           "shutdown_command": "shutdown -P now",
           "shutdown_timeout": "30m",
@@ -25,11 +25,11 @@
             [ "modifyvm", "{{.Name}}", "--nic1", "hostonly" ],
             [ "modifyvm", "{{.Name}}", "--hostonlyadapter1", "vboxnet0" ],
             [ "modifyvm", "{{.Name}}", "--cableconnected1", "on" ],
-            [ "modifyvm", "{{.Name}}", "--memory", "2048" ],
-            [ "modifyvm", "{{.Name}}", "--vram", "64" ],
+            [ "modifyvm", "{{.Name}}", "--memory", "1024" ],
+            [ "modifyvm", "{{.Name}}", "--vram", "9" ],
             [ "modifyvm", "{{.Name}}", "--cpus", "1" ],
-            [ "modifyvm", "{{.Name}}", "--audio", "pulse" ],
-            [ "modifyvm", "{{.Name}}", "--audioout", "on" ],
+            [ "modifyvm", "{{.Name}}", "--audio", "none" ],
+            [ "modifyvm", "{{.Name}}", "--audioout", "off" ],
             [ "modifyvm", "{{.Name}}", "--audiocontroller", "hda" ]
           ],
           "vboxmanage_post": [
@@ -41,7 +41,7 @@
   "post-processors": [
     {
       "keep_input_artifact": false,
-      "output": "box/centos69-dt-i386-release.box",
+      "output": "box/centos610-release.box",
       "type": "vagrant"
     }
   ]
