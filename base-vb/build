@@ -15,6 +15,7 @@ if [ "${DEBUG:=false}" = "true" ]; then
 fi
 
 if [ ! -v MICROSOFTLINUX ]; then
+#  packer build -debug -only="virtualbox-iso" $1
   packer build -only="virtualbox-iso" $1
 else
   MODARG=${1/.json/-win.json}
