@@ -3,9 +3,9 @@
   "builders": [
     {
       "type": "virtualbox-ovf",
-      "source_path": "../../../../.vagrant.d/boxes/boxcycler-VAGRANTSLASH-centos75-release/2018.6.1/virtualbox",
-      "source": "box.ovf",
+      "source_path": "{{user `home`}}/.vagrant.d/boxes/boxcycler-VAGRANTSLASH-centos75-release/2018.6.1/virtualbox/box.ovf",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "headless": "{{ user `headless` }}",
       "output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
       "post_shutdown_delay": "10s",
       "shutdown_command": "{{ user `shutdown_command` }}",
@@ -49,8 +49,8 @@
     },
     {
       "type": "file",
-      "source": "{{ user `git_source_dir` }}",
-      "destination": "{{ user `git_target_dir` }}"
+      "source": "{{user `home`}}/shares/git/centos/7/build",
+      "destination": "/git/centos/7"
     },
     {
       "environment_vars": [
@@ -78,8 +78,8 @@
     "cleanup_build_tools": "false",
     "desktop": "false",
     "ftp_proxy": "{{env `ftp_proxy`}}",
-    "git_source_dir": "/git/centos/7/build",
-    "git_target_dir": "/git/centos/7",
+    "headless": "true",
+    "home": "{{env `HOME`}}",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
     "install_vagrant_key": "false",
@@ -90,6 +90,7 @@
     "ssh_username": "vagrant",
     "update": "true",
     "vagrantfile_template": "",
-    "version": "2018.5.31"
+    "version": "2018.7.20",
+    "vm_name": "centos75"
   }
 }

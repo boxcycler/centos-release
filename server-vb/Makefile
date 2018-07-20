@@ -6,18 +6,16 @@
 # modified:      July 20, 2018
 # description:   A makefile to build all or specified parts . . .
 
-BOX_SUFFIX := -2018.7.19.box
+BOX_SUFFIX := -2018.7.20.box
 
 %$(BOX_SUFFIX): %.json
 	./build $<
 
-.PHONY: all clean 75 75-dt
+.PHONY: all clean 75
 
-all: 75 75-dt
+all: 75
 
 75: 75$(BOX_SUFFIX)
-
-75-dt: 75-dt$(BOX_SUFFIX)
 
 clean:
 	rm -rf box packer_cache CentOS*.iso

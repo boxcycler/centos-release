@@ -4,7 +4,7 @@
 # file name:     build
 # author:        Steve Vasta
 # created:       May 31, 2018
-# modified:      July 19, 2018
+# modified:      July 20, 2018
 # description:   A simple file to kick off a packer build using
 #                Oracle VirtualBox as a hypervisor . . .
 
@@ -14,10 +14,11 @@ if [ "${DEBUG:=false}" = "true" ]; then
   set -o xtrace
 fi
 
+version=$(cat VERSION)
 if [ ! -v MICROSOFTLINUX ]; then
 #  packer build -debug -only="virtualbox-iso" $1
-  packer build -only="virtualbox-iso" $1
+  packer build -only="virtualbox-ovf" -var "version=${version}" $1
 else
   MODARG=${1/.json/-win.json}
-  powershell.exe "packer build -only=\"virtualbox-iso\" $MODARG"
+  powershell.exe "packer build -only=\"virtualbox-ovf\" $MODARG"
 fi
