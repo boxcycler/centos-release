@@ -1,0 +1,39 @@
+{
+  "_comment": "Build with `packer build r75.json`",
+  "builders": [
+      {
+          "boot_command": "<up><wait><tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort}}/ks75.cfg <enter>",
+          "cdrom_adapter_type": "ide",
+          "disk_adapter_type": "scsi",
+          "disk_size": "128000",
+          "guest_os_type": "centos-64",
+          "headless": false,
+          "http_directory": "./",
+          "iso_checksum": "21c5d14fb2e38862136f29a16f2caf58e52bf498882479070e425ecf6995ef53dd89fba2b42d2f1e3bac02c2558ecc69724f5c68ff4848954cab02c4f896360b",
+          "iso_checksum_type": "sha512",
+          "iso_url": "/mnt/iso/linux/centos/CentOS-7-x86_64-DVD-1804.iso",
+          "output_directory": "output-centos7-vmware-iso",
+          "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
+          "ssh_password": "vagrant",
+          "ssh_username": "vagrant",
+          "ssh_wait_timeout": "10000s",
+          "tools_upload_flavor": "linux",
+          "type": "vmware-iso",
+          "vm_name": "centos7",
+          "vmx_data": {
+            "cpuid.coresPerSocket": "1",
+            "memsize": "2048",
+            "numvcpus": "1"
+          },
+          "vmx_remove_ethernet_interfaces": true,
+          "network": "hostonly"
+      }
+  ],
+  "post-processors": [
+    {
+      "keep_input_artifact": false,
+      "output": "box/centos75-release.box",
+      "type": "vagrant"
+    }
+  ]
+}

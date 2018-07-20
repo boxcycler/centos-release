@@ -3,7 +3,7 @@
   "builders": [
     {
       "type": "virtualbox-ovf",
-      "source_path": "/u1/ova/virtualbox/centos75-release.ova",
+      "source_path": "/mnt/ovf/linux/centos/7.5/r75-vb.ovf",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
       "post_shutdown_delay": "10s",
