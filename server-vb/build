@@ -17,7 +17,7 @@ fi
 version=$(cat VERSION)
 if [ ! -v MICROSOFTLINUX ]; then
 #  packer build -debug -only="virtualbox-iso" $1
-  packer build -only="virtualbox-ovf" -var "version=${version}" $1
+  packer build -var "version=${version}" $1
 else
   MODARG=${1/.json/-win.json}
   powershell.exe "packer build -only=\"virtualbox-ovf\" $MODARG"

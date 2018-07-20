@@ -2,17 +2,24 @@
   "_comment": "Build with `packer build 75.json`",
   "builders": [
     {
-      "type": "virtualbox-ovf",
-      "source_path": "{{user `home`}}/.vagrant.d/boxes/boxcycler-VAGRANTSLASH-centos75-release/2018.6.1/virtualbox/box.ovf",
-      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-      "headless": "{{ user `headless` }}",
-      "output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
-      "post_shutdown_delay": "10s",
-      "shutdown_command": "{{ user `shutdown_command` }}",
-      "ssh_password": "{{ user `ssh_password` }}",
-      "ssh_username": "{{ user `ssh_username` }}",
-      "ssh_wait_timeout": "10000s",
-      "vm_name": "{{ user `vm_name` }}"
+      "type": "vagrant",
+
+      "box_name": "boxcycler/centos75-release",
+      "box_provider": "virtualbox",
+      "box_file": ".ovf",
+
+      "builder": {
+        "type": "virtualbox-ovf",
+        "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+        "headless": "{{ user `headless` }}",
+        "output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
+        "post_shutdown_delay": "10s",
+        "shutdown_command": "{{ user `shutdown_command` }}",
+        "ssh_password": "{{ user `ssh_password` }}",
+        "ssh_username": "{{ user `ssh_username` }}",
+        "ssh_wait_timeout": "10000s",
+        "vm_name": "{{ user `vm_name` }}"
+      }
     }
   ],
   "post-processors": [
