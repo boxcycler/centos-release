@@ -3,7 +3,8 @@
   "builders": [
     {
       "type": "virtualbox-ovf",
-      "source_path": "/mnt/ovf/linux/centos/7.5/r75-vb.ovf",
+      "source_path": "../../../../.vagrant.d/boxes/boxcycler-VAGRANTSLASH-centos75-release/2018.6.1/virtualbox",
+      "source": "box.ovf",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
       "post_shutdown_delay": "10s",
