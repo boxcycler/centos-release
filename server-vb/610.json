@@ -1,16 +1,17 @@
 {
-  "_comment": "Build with `packer build 75-dt.json`",
+  "_comment": "Build with `packer build r610.json`",
   "builders": [
     {
       "type": "vagrant",
 
-      "box_name": "boxcycler/centos75-dt-release",
+      "box_name": "boxcycler/centos610-release",
       "box_provider": "virtualbox",
       "box_file": ".ovf",
 
       "builder": {
         "type": "virtualbox-ovf",
         "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+        "headless": "{{ user `headless` }}",
         "output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
         "post_shutdown_delay": "10s",
         "shutdown_command": "{{ user `shutdown_command` }}",
@@ -47,7 +48,8 @@
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "scripts": [
         "script/gitbase.sh",
-        "script/update.sh"
+        "script/update.sh",
+        "script/virtualbox.sh"
       ],
       "type": "shell",
       "expect_disconnect": true,
@@ -82,9 +84,9 @@
   ],
   "variables": {
     "cleanup_build_tools": "false",
-    "desktop": "true",
+    "desktop": "false",
     "ftp_proxy": "{{env `ftp_proxy`}}",
-    "headless": "false",
+    "headless": "true",
     "home": "{{env `HOME`}}",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
@@ -95,8 +97,8 @@
     "ssh_password": "vagrant",
     "ssh_username": "vagrant",
     "update": "true",
-    "vagrantfile_template": "tpl/vagrantfile-centos7-desktop.tpl",
+    "vagrantfile_template": "",
     "version": "2018.7.23",
-    "vm_name": "centos75-dt"
+    "vm_name": "centos610"
   }
 }
