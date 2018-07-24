@@ -48,8 +48,7 @@
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "scripts": [
         "script/gitbase.sh",
-        "script/update.sh",
-        "script/virtualbox.sh"
+        "script/update.sh"
       ],
       "type": "shell",
       "expect_disconnect": true,
@@ -57,8 +56,8 @@
     },
     {
       "type": "file",
-      "source": "{{user `home`}}/shares/git/centos/7/build",
-      "destination": "/git/centos/7"
+      "source": "{{user `home`}}/shares/git/centos/6/build",
+      "destination": "/git/centos/6"
     },
     {
       "environment_vars": [
@@ -76,6 +75,7 @@
       ],
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "scripts": [
+        "script/virtualbox.sh",
         "script/base.sh",
         "script/cleanup.sh"
       ],
@@ -98,7 +98,7 @@
     "ssh_username": "vagrant",
     "update": "true",
     "vagrantfile_template": "",
-    "version": "2018.7.23",
+    "version": "2018.7.24",
     "vm_name": "centos610"
   }
 }
