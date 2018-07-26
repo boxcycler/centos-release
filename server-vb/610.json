@@ -56,8 +56,8 @@
     },
     {
       "type": "file",
-      "source": "{{user `home`}}/shares/git/centos/6/build",
-      "destination": "/git/centos/6"
+      "source": "{{user `home`}}/shares/git/boxcycler/centos",
+      "destination": "/git/boxcycler"
     },
     {
       "environment_vars": [
@@ -79,7 +79,8 @@
         "script/base.sh",
         "script/cleanup.sh"
       ],
-      "type": "shell"
+      "type": "shell",
+      "pause_before": "10s"
     }
   ],
   "variables": {
@@ -90,15 +91,15 @@
     "home": "{{env `HOME`}}",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
-    "install_vagrant_key": "false",
+    "install_vagrant_key": "true",
     "no_proxy": "{{env `no_proxy`}}",
     "rsync_proxy": "{{env `rsync_proxy`}}",
-    "shutdown_command": "echo 'packer'|sudo -S shutdown -P now",
+    "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
     "ssh_password": "vagrant",
     "ssh_username": "vagrant",
     "update": "true",
     "vagrantfile_template": "",
-    "version": "2018.7.24",
+    "version": "2018.7.25",
     "vm_name": "centos610"
   }
 }
