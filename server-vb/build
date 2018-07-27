@@ -4,7 +4,7 @@
 # file name:     build
 # author:        Steve Vasta
 # created:       May 31, 2018
-# modified:      July 25, 2018
+# modified:      July 27, 2018
 # description:   A simple file to kick off a packer build using
 #                Oracle VirtualBox as a hypervisor . . .
 
@@ -29,5 +29,7 @@ if [ ! -v MICROSOFTLINUX ]; then
   packer build -var "version=${version}" $1
 else
   MODARG=${1/.json/-win.json}
-  powershell.exe "packer build -only=\"virtualbox-ovf\" $MODARG"
+  TMPCWD=`pwd`
+  export WINCWD=`echo $ABSROOT${TMPCWD//\//\\\\}`
+  packer.exe build -var "version=${version}" -var "wincwd=${WINCWD}" "$WINCWD\\$MODARG"
 fi
