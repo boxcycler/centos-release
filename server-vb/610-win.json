@@ -47,17 +47,11 @@
       ],
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "scripts": [
-        "{{user `wincwd`}}\\script\\gitbase.sh",
         "{{user `wincwd`}}\\script\\update.sh"
       ],
       "type": "shell",
       "expect_disconnect": true,
       "start_retry_timeout": "30m"
-    },
-    {
-      "type": "file",
-      "source": "{{user `home`}}/shares/git/boxcycler/centos",
-      "destination": "/git/boxcycler"
     },
     {
       "environment_vars": [

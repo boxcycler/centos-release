@@ -4,7 +4,7 @@
 # file name:     base.sh
 # author:        Steve Vasta
 # created:       February 21, 2017
-# modified:      July 25, 2018
+# modified:      July 27, 2018
 # description:   Customizing an otherwise generic build.
 # note 1:        Assuming file provisioners already put stuff in /tmp.
 
@@ -31,16 +31,12 @@ echo "==> Installing r10k"
 
 #-------------------------------------------------------------------------------
 # Setup puppet configuration to finish build/conf of our new machine . . .
-git clone /git/boxcycler/centos/puppet.git /tmp/puppet
+git clone https://github.com/boxcycler/centos-puppet /tmp/puppet
 ( cd /tmp/puppet ; /opt/puppetlabs/puppet/bin/r10k puppetfile install )
 
 #-------------------------------------------------------------------------------
 # Start puppet . . .
 /opt/puppetlabs/puppet/bin/puppet apply --modulepath=/tmp/puppet/modules /tmp/puppet/manifests/site.pp
-
-#-------------------------------------------------------------------------------
-# Cleanup the local /git directory . . .
-rm -rf /git
 
 #-------------------------------------------------------------------------------
 # END OF FILE
