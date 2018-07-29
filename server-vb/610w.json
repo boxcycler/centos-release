@@ -1,5 +1,5 @@
 {
-  "_comment": "Build with `packer build 610-win.json`",
+  "_comment": "Build with `packer build 610w.json`",
   "builders": [
     {
       "type": "vagrant",
@@ -94,7 +94,7 @@
     "ssh_username": "vagrant",
     "update": "true",
     "vagrantfile_template": "",
-    "version": "2018.7.27",
+    "version": "2018.7.29",
     "vm_name": "centos610",
     "wincwd": "TBD",
     "winhome": "{{env `WINHOME`}}"

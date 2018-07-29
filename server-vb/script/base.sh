@@ -4,7 +4,7 @@
 # file name:     base.sh
 # author:        Steve Vasta
 # created:       February 21, 2017
-# modified:      July 27, 2018
+# modified:      July 29, 2018
 # description:   Customizing an otherwise generic build.
 # note 1:        Assuming file provisioners already put stuff in /tmp.
 
@@ -17,6 +17,7 @@ export OS_MAJOR_VERSION=`rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat
 # Download and install the puppet5 repo . . .
 wget https://yum.puppetlabs.com/puppet5/puppet5-release-el-$OS_MAJOR_VERSION.noarch.rpm
 rpm -iv ./puppet5-release-el-$OS_MAJOR_VERSION.noarch.rpm
+rm -f ./puppet5-release-el-$OS_MAJOR_VERSION.noarch.rpm
 
 #-------------------------------------------------------------------------------
 # Install 'puppet-agent' . . .

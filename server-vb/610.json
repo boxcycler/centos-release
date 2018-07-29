@@ -47,17 +47,11 @@
       ],
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "scripts": [
-        "script/gitbase.sh",
         "script/update.sh"
       ],
       "type": "shell",
       "expect_disconnect": true,
       "start_retry_timeout": "30m"
-    },
-    {
-      "type": "file",
-      "source": "{{user `home`}}/shares/git/boxcycler/centos",
-      "destination": "/git/boxcycler"
     },
     {
       "environment_vars": [
@@ -99,7 +93,7 @@
     "ssh_username": "vagrant",
     "update": "true",
     "vagrantfile_template": "",
-    "version": "2018.7.25",
+    "version": "2018.7.29",
     "vm_name": "centos610"
   }
 }
