@@ -4,7 +4,7 @@
 # file name:     build
 # author:        Steve Vasta
 # created:       May 31, 2018
-# modified:      July 29, 2018
+# modified:      August 1, 2018
 # description:   A simple file to kick off a packer build using
 #                Oracle VirtualBox as a hypervisor . . .
 
@@ -14,21 +14,45 @@ if [ "${DEBUG:=false}" = "true" ]; then
   set -o xtrace
 fi
 
+usage() {
+  echo "usage: $(basename $0) VAR_LIST_FILE [PACKER_TEMPLATE]"
+  echo
+  echo "Build a box"
+}
+
+args() {
+  if [ $# -lt 1 ]; then
+    usage
+    exit 0
+  fi
+
+  var_file=$1
+
+  if [ ! -f ${var_file} ]; then
+    var_file="${var_file}.json"
+    if [ ! -f ${var_file} ]; then
+      echo "$(basename $0): Invalid template file ${var_list_template}"
+      exit 127
+    fi
+  fi
+
+  if [ -d output-centos${1}-virtualbox-iso ]; then
+    rm -rf output-centos${1}-virtualbox-iso
+  fi
+}
+
+# main
+args "$@"
+
 if [ -d packer_cache ]; then
   rm -rf packer_cache
 fi
 
-MODARG=${1/.json//}
-if [ -d output-centos${MODARG}-virtualbox-iso ]; then
-  rm -rf output-centos${MODARG}-virtualbox-iso
-fi
-
 version=$(cat VERSION)
 if [ ! -v MICROSOFTLINUX ]; then
-  packer build -var "version=${version}" $1
+  packer build -var-file=${var_file} -var "version=${version}" "base.json"
 else
-  MODARG=${1/.json/w.json}
   TMPCWD=`pwd`
   export WINCWD=`echo $ABSROOT${TMPCWD//\//\\\\}`
-  packer.exe build -var "version=${version}" -var "wincwd=${WINCWD}" "$WINCWD\\$MODARG"
+  packer.exe build -var-file="$WINCWD\\${var_file}" -var "version=${version}" -var "wincwd=${WINCWD}" "$WINCWD\\basew.json"
 fi

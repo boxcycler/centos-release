@@ -4,7 +4,7 @@
     {
       "type": "vagrant",
 
-      "box_name": "boxcycler/centos610-release",
+      "box_name": "{{ user `box_name` }}",
       "box_provider": "virtualbox",
       "box_file": ".ovf",
 
@@ -80,6 +80,7 @@
   ],
   "variables": {
     "absroot": "{{env `ABSROOT`}}",
+    "box_name": "TBD",
     "cleanup_build_tools": "false",
     "desktop": "false",
     "ftp_proxy": "{{env `ftp_proxy`}}",
@@ -95,8 +96,8 @@
     "ssh_username": "vagrant",
     "update": "true",
     "vagrantfile_template": "",
-    "version": "2018.7.29",
-    "vm_name": "centos610",
+    "version": "2018.8.1",
+    "vm_name": "TBD",
     "wincwd": "TBD",
     "winhome": "{{env `WINHOME`}}"
   }

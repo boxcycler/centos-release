@@ -3,7 +3,7 @@
 # file name:     Makefile
 # author:        Steve Vasta
 # created:       May 31, 2018
-# modified:      July 23, 2018
+# modified:      August 1, 2018
 # description:   A makefile to build all or specified parts . . .
 
 BOX_SUFFIX := -$(shell cat VERSION).box
