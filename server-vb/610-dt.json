@@ -1,0 +1,5 @@
+{
+  "_comment": "Build with `packer build -var-file=610-dt.json base.json`",
+  "box_name": "boxcycler/centos610-dt-release",
+  "vm_name": "centos610-dt"
+}
