@@ -1,13 +1,10 @@
 {
   "_comment": "Build with `packer build -var-file=<VERSION>.json -var-file=win.json base.json`",
-  "absroot": "{{ env `ABSROOT`}}",
-  "base_sh": "{{ user `wincwd`}}\\script\\base.sh",
-  "cleanup_sh": "{{ user `wincwd`}}\\script\\cleanup.sh",
-  "motd_sh": "{{ user `wincwd`}}\\script\\motd.sh",
-  "output_val": "{{ user `winhome` }}\\Vagrant\\box\\virtualbox\\{{ user `vm_name` }}-{{ user `version` }}.box",
-  "output_directory": "{{ user `winhome`}}\\Vagrant\\output-{{ user `vm_name` }}-virtualbox-iso",
-  "update_sh": "{{ user `wincwd`}}\\script\\update.sh",
-  "virtualbox_sh": "{{ user `wincwd`}}\\script\\virtualbox.sh",
-  "wincwd": "TBD",
-  "winhome": "{{env `WINHOME`}}"
+  "base_sh": "\\script\\base.sh",
+  "cleanup_sh": "\\script\\cleanup.sh",
+  "motd_sh": "\\script\\motd.sh",
+  "output_prefix": "\\Vagrant\\box\\virtualbox\\",
+  "output_dir_prefix": "\\Vagrant\\output-",
+  "update_sh": "\\script\\update.sh",
+  "virtualbox_sh": "\\script\\virtualbox.sh"
 }

@@ -54,5 +54,5 @@ if [ ! -v MICROSOFTLINUX ]; then
 else
   TMPCWD=`pwd`
   export WINCWD=`echo $ABSROOT${TMPCWD//\//\\\\}`
-  packer.exe build -var-file="$WINCWD\\${var_file}" -var-file="$WINCWD\\win.json" -var "version=${version}" -var "wincwd=${WINCWD}" "$WINCWD\\base.json"
+  packer.exe build -var-file="$WINCWD\\${var_file}" -var-file="$WINCWD\\win.json" -var "version=${version}" -var "wincwd=${WINCWD}" -var "winhome=${WINHOME}" "$WINCWD\\base.json"
 fi
