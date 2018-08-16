@@ -1,9 +1,4 @@
 #!/bin/bash -eux
-#-------------------------------------------------------------------------------
-# project name:  Boxcycler Builds (CentOS)
-# file name:     Makefile
-# author:        Steve Vasta
-# created:       July 18, 2018
 echo "==> Clear out machine id"
 rm -f /etc/machine-id
 touch /etc/machine-id
@@ -74,12 +69,6 @@ echo '==> Zeroing out empty area to save space in the final image'
 # zeroed space compresses down to nothing.
 dd if=/dev/zero of=/EMPTY bs=1M || echo "dd exit code $? is suppressed"
 rm -f /EMPTY
-dd if=/dev/zero of=/usr/EMPTY bs=1M || echo "dd exit code $? is suppressed"
-rm -f /usr/EMPTY
-dd if=/dev/zero of=/var/EMPTY bs=1M || echo "dd exit code $? is suppressed"
-rm -f /var/EMPTY
-dd if=/dev/zero of=/home/EMPTY bs=1M || echo "dd exit code $? is suppressed"
-rm -f /home/EMPTY
 
 # Block until the empty file has been removed, otherwise, Packer
 # will try to kill the box while the disk is still full and that's bad

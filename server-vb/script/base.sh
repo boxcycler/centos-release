@@ -14,6 +14,11 @@ set -eux
 export OS_MAJOR_VERSION=`rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release)`
 
 #-------------------------------------------------------------------------------
+# Install 'wget' and 'git' . . .
+yum -y update
+yum -y install wget git
+
+#-------------------------------------------------------------------------------
 # Download and install the puppet5 repo . . .
 wget https://yum.puppetlabs.com/puppet5/puppet5-release-el-$OS_MAJOR_VERSION.noarch.rpm
 rpm -iv ./puppet5-release-el-$OS_MAJOR_VERSION.noarch.rpm
@@ -21,7 +26,6 @@ rm -f ./puppet5-release-el-$OS_MAJOR_VERSION.noarch.rpm
 
 #-------------------------------------------------------------------------------
 # Install 'puppet-agent' . . .
-yum -y update
 yum -y install puppet-agent
 
 #-------------------------------------------------------------------------------

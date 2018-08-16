@@ -1,5 +1,5 @@
 {
   "_comment": "Build with `packer build -var-file=75.json base.json`",
-  "box_name": "boxcycler/centos75-release",
+  "box_name": "boxcycler/CentOS-7-server-release",
   "vm_name": "centos75"
 }

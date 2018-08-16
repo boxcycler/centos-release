@@ -2,9 +2,12 @@
   "_comment": "Build with `packer build -var-file=<VERSION>.json -var-file=win.json base.json`",
   "base_sh": "\\script\\base.sh",
   "cleanup_sh": "\\script\\cleanup.sh",
+  "fix-slow-dns_sh": "\\script\\fix-slow-dns.sh",
+  "hypervisor_sh": "\\script\\virtualbox.sh",
   "motd_sh": "\\script\\motd.sh",
   "output_prefix": "\\Vagrant\\box\\virtualbox\\",
   "output_dir_prefix": "\\Vagrant\\output-",
+  "sshd_sh": "\\script\\sshd.sh",
   "update_sh": "\\script\\update.sh",
-  "virtualbox_sh": "\\script\\virtualbox.sh"
+  "vagrant_sh": "\\script\\vagrant.sh"
 }
