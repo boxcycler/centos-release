@@ -4,7 +4,7 @@
 # file name:     build
 # author:        Steve Vasta
 # created:       May 31, 2018
-# modified:      August 1, 2018
+# modified:      August 17, 2018
 # description:   A simple file to kick off a packer build using
 #                Oracle VirtualBox as a hypervisor . . .
 
@@ -55,4 +55,7 @@ else
   TMPCWD=`pwd`
   export WINCWD=`echo $ABSROOT${TMPCWD//\//\\\\}`
   packer.exe build -var-file="$WINCWD\\${var_file}" -var-file="$WINCWD\\win.json" -var "version=${version}" -var "wincwd=${WINCWD}" -var "winhome=${WINHOME}" "$WINCWD\\base.json"
+  if [ -d $WINHOMELINUX/Vagrant/box ]; then
+    ln -s $WINHOMELINUX/Vagrant/box .
+  fi
 fi
